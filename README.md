@@ -34,7 +34,7 @@ Before running the project, make sure to add your API keys for the OpenWeather A
 - **OpenWeather API Key**: You can get it from [OpenWeatherMap](https://openweathermap.org/).
 - **Gemini API Key**: Obtain the API key from [Google Cloud](https://ai.google.dev/aistudio).
 
-You will need to insert your keys in the appropriate place in the `script.js` file:
+You will need to insert your keys in the appropriate place in the javascript file:
 
 ```js
 const apiKey = 'YOUR_OPENWEATHER_API_KEY';
