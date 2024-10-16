@@ -1,7 +1,3 @@
-Here's a `README.md` file that explains the weather and chat bot project and provides instructions to run it locally:
-
----
-
 # Weather and Chat Bot Website
 
 This project is a dynamic weather and chat bot web application that uses the **OpenWeather API** for current weather and forecast data, and the **Google Gemini API** for natural language chat responses. It allows users to search for the weather conditions of any city and also interact with a chatbot that handles general queries.
@@ -13,7 +9,13 @@ This project is a dynamic weather and chat bot web application that uses the **O
   - Fetch and display a 5-day weather forecast for a city, presented in a table with pagination for easy navigation.
   - Real-time background color changes based on weather conditions (e.g., sunny, rainy, cloudy).
   - Responsive charts (bar, line, doughnut) that visualize temperature trends and weather conditions using the Chart.js library.
-  
+  - **Filtering and Sorting Features**:
+    - **Sort Temperatures Ascending**: Sort the displayed temperatures in ascending order.
+    - **Sort Temperatures Descending**: Sort the displayed temperatures in descending order.
+    - **Filter Rainy Days**: Display only the days with rain in the forecast.
+    - **Show Day with Highest Temperature**: Display the day with the highest temperature from the forecast.
+    - These features maintain pagination, allowing users to navigate through filtered or sorted results seamlessly.
+
 - **Chat Bot:**
   - Handles weather-related and general queries.
   - If the user asks for weather or forecast, it will automatically fetch the relevant data for the provided city.
@@ -34,7 +36,7 @@ Before running the project, make sure to add your API keys for the OpenWeather A
 - **OpenWeather API Key**: You can get it from [OpenWeatherMap](https://openweathermap.org/).
 - **Gemini API Key**: Obtain the API key from [Google Cloud](https://ai.google.dev/aistudio).
 
-You will need to insert your keys in the appropriate place in the javascript file:
+You will need to insert your keys in the appropriate place in the JavaScript file:
 
 ```js
 const apiKey = 'YOUR_OPENWEATHER_API_KEY';
@@ -52,7 +54,7 @@ Follow these steps to run the project on your local machine:
    ```
 
 2. **Insert API Keys**:
-   Open javascript files and replace the placeholders with your **OpenWeather API** and **Gemini API** keys.
+   Open JavaScript files and replace the placeholders with your **OpenWeather API** and **Gemini API** keys.
 
    ```js
    const apiKey = 'YOUR_OPENWEATHER_API_KEY';
@@ -68,7 +70,13 @@ Follow these steps to run the project on your local machine:
 
 5. **Chat with the Bot**:
    - Enter a question or message in the chat input box and click "Send", or press Enter.
-   - The bot will reply with weather-related info if the message contains terms like "weather" or "forecast", or it will use the **Gemini API** to respond to general questions.
+   - The bot will reply with weather-related info if the message contains terms like "weather" or "forecast," or it will use the **Gemini API** to respond to general questions.
+
+6. **Use Filtering and Sorting Features**:
+   - You can sort the forecast temperatures in ascending or descending order.
+   - Filter the forecast to display only rainy days.
+   - Show the day with the highest temperature.
+   - Pagination will remain intact when using these features.
 
 ## Project Structure
 
@@ -76,8 +84,8 @@ Follow these steps to run the project on your local machine:
 weather-chat-bot/
 ├── index.html           # Main HTML file
 ├── chatbot.html         # Chatbot HTML file
-├── weather-dashboard.js # JavaScript logic for main dashboard
-├── weather-chatbot.js   # JavaScript logic for chatbot adn weather forecast table
+├── weather-dashboard.js  # JavaScript logic for main dashboard
+├── weather-chatbot.js    # JavaScript logic for chatbot and weather forecast table
 ├── README.md            # Project documentation (this file)
 └── assets/              # Static assets (images, icons, etc.)
 ```
@@ -97,7 +105,3 @@ weather-chat-bot/
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
-
-This `README.md` provides clear instructions to set up, run, and understand the project. Let me know if you'd like to add or modify any details!
