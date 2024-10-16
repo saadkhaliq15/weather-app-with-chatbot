@@ -71,20 +71,23 @@
             }
         }
 
-         /* Mobile Sidebar Styling */
-         #sidebar {
+        /* Mobile Sidebar Styling */
+        #sidebar {
             transition: transform 0.3s ease-in-out;
-            transform: translateX(-100%); /* Hidden by default */
+            transform: translateX(-100%);
+            /* Hidden by default */
         }
 
         #sidebar.open {
-            transform: translateX(0); /* Show the sidebar */
+            transform: translateX(0);
+            /* Show the sidebar */
         }
     </style>
 </head>
 
 <body class="bg-gradient-to-r from-blue-50 to-indigo-100">
-    <header class="flex justify-between items-center bg-gradient-to-b from-yellow-600 to-yellow-700 text-white p-4 md:hidden">
+    <header
+        class="flex justify-between items-center bg-gradient-to-b from-yellow-600 to-yellow-700 text-white p-4 md:hidden">
         <a href="index.html">
             <h1 class="text-3xl font-bold tracking-wide">Weather App</h1>
         </a>
@@ -101,14 +104,17 @@
             </a>
             <nav class="mt-10">
                 <ul>
-                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a href="index.html">Dashboard</a></li>
-                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a href="chatbot.html">Chatbot</a></li>
+                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a
+                            href="index.html">Dashboard</a></li>
+                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a
+                            href="chatbot.html">Chatbot</a></li>
                 </ul>
             </nav>
         </div>
 
         <!-- Mobile Sidebar -->
-        <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gradient-to-b from-yellow-600 to-yellow-700 text-white p-6 mobile-menu md:hidden">
+        <div id="sidebar"
+            class="fixed top-0 left-0 w-64 h-full bg-gradient-to-b from-yellow-600 to-yellow-700 text-white p-6 mobile-menu md:hidden">
             <button id="close-sidebar" class="text-white absolute top-4 right-4">
                 <i class="fas fa-times text-xl"></i>
             </button>
@@ -120,8 +126,10 @@
 
             <nav class="mt-10">
                 <ul>
-                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a href="index.html">Dashboard</a></li>
-                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a href="chatbot.html">Chatbot</a></li>
+                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a
+                            href="index.html">Dashboard</a></li>
+                    <li class="p-4 hover:bg-yellow-800 cursor-pointer transition-all rounded-md"><a
+                            href="chatbot.html">Chatbot</a></li>
                 </ul>
             </nav>
         </div>
@@ -160,6 +168,21 @@
                         <tbody id="forecastTableBody"></tbody>
                     </table>
 
+                    <!-- Filter and Sort Buttons -->
+                    <div class="flex flex-col sm:flex-row sm:justify-center space-y-2 sm:space-y-0 sm:space-x-2 mb-4">
+                        <button id="sortAscBtn"
+                            class="btn-gradient px-4 py-2 rounded-lg shadow-md w-full sm:w-auto">Sort Ascending</button>
+                        <button id="filterRainBtn"
+                            class="btn-gradient px-4 py-2 rounded-lg shadow-md w-full sm:w-auto">Rainy Days</button>
+                        <button id="highestTempBtn"
+                            class="btn-gradient px-4 py-2 rounded-lg shadow-md w-full sm:w-auto">Highest Temp</button>
+                        <button id="sortDescBtn"
+                            class="btn-gradient px-4 py-2 rounded-lg shadow-md w-full sm:w-auto">Sort
+                            Descending</button>
+                        <button id="clearFilterBtn"
+                            class="btn-gradient px-4 py-2 rounded-lg shadow-md w-full sm:w-auto">Clear Filters</button>
+                    </div>
+
                     <!-- Loading Spinner -->
                     <div id="loading" class="hidden text-center">
                         <div class="spinner-border"></div>
@@ -171,6 +194,7 @@
                         <button id="nextBtn" class="btn-gradient px-4 py-2 mx-1 rounded-lg shadow-md">Next</button>
                     </div>
                 </div>
+
 
                 <!-- Chatbot -->
                 <div class="bg-white shadow-lg rounded-lg p-6 card-shadow">

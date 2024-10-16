@@ -16,6 +16,7 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
 let weatherData = []; // Store the fetched weather data
+let filteredWeatherData = []; // Store filtered/sorted data
 let currentPage = 0; // Track the current page
 const itemsPerPage = 5; // Number of items to display per page
 
@@ -84,14 +85,14 @@ function updateWeatherWidget(data) {
     console.log(`Weather in ${data.name}: ${weatherDescription}, ${temperature}°C`);
 }
 
-// Update the weather forecast table based on the current page
 function updateTable() {
     forecastTableBody.innerHTML = '';
+    const dataToDisplay = filteredWeatherData.length ? filteredWeatherData : weatherData; // Use filtered data if available
     const start = currentPage * itemsPerPage;
     const end = start + itemsPerPage;
 
     // Populate table rows for the current page
-    weatherData.slice(start, end).forEach(item => {
+    dataToDisplay.slice(start, end).forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td class="p-2 border-b">${item.dt_txt}</td>
@@ -102,8 +103,9 @@ function updateTable() {
     });
 
     prevBtn.disabled = currentPage === 0;
-    nextBtn.disabled = end >= weatherData.length;
+    nextBtn.disabled = end >= dataToDisplay.length;
 }
+
 
 // Show previous page
 function showPrevPage() {
@@ -167,3 +169,67 @@ function sendChatMessageToGemini(message) {
             chatOutput.scrollTop = chatOutput.scrollHeight;
         });
 }
+
+
+// Show temperatures in ascending order
+function sortTemperaturesAscending() {
+    filteredWeatherData = weatherData.slice().sort((a, b) => a.main.temp - b.main.temp);
+    currentPage = 0; // Reset to first page
+    updateTable();
+}
+
+// Filter out days without rain
+function filterRainyDays() {
+    filteredWeatherData = weatherData.filter(item => item.weather[0].main.toLowerCase().includes('rain'));
+    currentPage = 0; // Reset to first page
+    updateTable();
+}
+
+
+// Show the day with the highest temperature
+function showDayWithHighestTemperature() {
+    const highestTempDay = weatherData.reduce((max, item) => (item.main.temp > max.main.temp ? item : max), weatherData[0]);
+    filteredWeatherData = [highestTempDay]; // Only one item, so no pagination needed
+    currentPage = 0; // Reset to first page
+    updateTable();
+}
+
+
+// Show temperatures in descending order
+function sortTemperaturesDescending() {
+    filteredWeatherData = weatherData.slice().sort((a, b) => b.main.temp - a.main.temp);
+    currentPage = 0; // Reset to first page
+    updateTable();
+}
+
+
+// Utility function to display filtered or sorted data
+function displayFilteredData(filteredData) {
+    forecastTableBody.innerHTML = ''; // Clear current table
+
+    filteredData.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="p-2 border-b">${item.dt_txt}</td>
+            <td class="p-2 border-b">${item.main.temp} °C</td>
+            <td class="p-2 border-b">${item.weather[0].main}</td>
+        `;
+        forecastTableBody.appendChild(row);
+    });
+}
+
+function clearFilters() {
+    filteredWeatherData = []; // Reset to show all weather data
+    currentPage = 0; // Reset to first page
+    updateTable();
+}
+
+// Example event listener for clear filters button
+document.getElementById('clearFilterBtn').addEventListener('click', clearFilters);
+
+
+// Example event listeners for buttons (assuming you have filter buttons in your UI)
+document.getElementById('sortAscBtn').addEventListener('click', sortTemperaturesAscending);
+document.getElementById('filterRainBtn').addEventListener('click', filterRainyDays);
+document.getElementById('highestTempBtn').addEventListener('click', showDayWithHighestTemperature);
+document.getElementById('sortDescBtn').addEventListener('click', sortTemperaturesDescending);
